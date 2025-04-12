@@ -13,10 +13,13 @@
 				<view class="time-btn" :class="{ active: timeType === 'day' }" @click="switchTimeType('day')">天</view>
 			</view> -->
 		</view>
-		<!-- Chart Section (Commented Out) -->
+		<!-- Chart Section -->
 		<view class="chart-container">
-			<view class="chart-wrapper">
+			<view class="chart-wrapper" v-if="hourTimeLabels.length > 0">
 				<canvas canvas-id="priceChart" id="priceChart" class="charts" @touchend="tap"/>
+			</view>
+			<view class="empty-state" v-else>
+				<text class="empty-text">暂无价格数据</text>
 			</view>
 		</view>
 		
@@ -28,9 +31,14 @@
 				<text class="header-item">金额</text>
 			</view>
 			<scroll-view class="list-content" scroll-y>
-				<view class="list-item" v-for="(item, index) in wenpiaoData" :key="index">
-					<text class="item-date">{{ item.date }}</text>
-					<text class="item-money">{{ formatNumber(item.money) }}</text>
+				<template v-if="hourTimeLabels.length > 0">
+					<view class="list-item" v-for="(item, index) in wenpiaoData" :key="index">
+						<text class="item-date">{{ item.date }}</text>
+						<text class="item-money">{{ formatNumber(item.money) }}</text>
+					</view>
+				</template>
+				<view class="empty-state" v-else>
+					<text class="empty-text">暂无价格数据</text>
 				</view>
 			</scroll-view>
 		</view>
@@ -79,10 +87,10 @@ var uChartsInstance = {};
 export default {
 	data() {
 		return {
-			price: '135.8544',
+			price: '',
 			timeType: 'hour', // 'hour' or 'day'
-			hourTimeLabels: ['02:30', '03:30', '04:30', '05:30', '06:30', '07:30', '08:30'],
-			dayTimeLabels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+			hourTimeLabels: [],
+			dayTimeLabels: [],
 			chartsDate: [],
 			cWidth: 750,
 			cHeight: 450,
@@ -109,8 +117,8 @@ export default {
 		// this.getServerData();
 	},
 	onShow() {
-		this.getZhexian()
 		this.getCanshu()
+		this.getZhexian()
 	},
 	methods: {
 		goBack() {
@@ -145,8 +153,13 @@ export default {
 				uid:uni.getStorageSync('uid'),
 			}).then(res => {
 				if(res.code === 1) {
+					const user = uni.getStorageSync('userInfo')
+					this.wenpiao = user.the_documents
 					const chartsData = []
-					this.hourTimeLabels = [] // 清空时间标签数组
+					this.hourTimeLabels = [] 
+					if(res.data.length == 0) {
+						return
+					}// 清空时间标签数组
 					
 					// 获取最新的6个数据点（不需要反转）
 					const displayData = res.data.slice(-6)
@@ -157,10 +170,6 @@ export default {
 						chartsData.push(this.formatNumber(i.money))
 					})
 
-					const user = uni.getStorageSync('userInfo')
-
-					this.wenpiao = user.the_documents
-					
 					console.log('图表数据:', {
 						categories: this.hourTimeLabels,
 						series: chartsData
@@ -416,6 +425,7 @@ export default {
 
 .list-content {
 	height: 300rpx;
+	position: relative;
 }
 
 .list-item {
@@ -539,21 +549,39 @@ export default {
 	background-color: #ffffff;
 	border-radius: 8px;
 	padding: 15px 0;
-	height: 500rpx;  /* 减小容器高度 */
+	height: 500rpx;
 	width: 100%;
 	overflow: hidden;
-	}
+	position: relative;
+}
 
 .chart-wrapper {
 	width: 100%;
 	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .charts {
 	width: 100%;
 	height: 100%;
+}
+
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 40rpx 0;
+	height: 100%;
+}
+
+.empty-icon {
+	width: 160rpx;
+	height: 160rpx;
+	margin-bottom: 20rpx;
+}
+
+.empty-text {
+	font-size: 28rpx;
+	color: #999;
 }
 </style>

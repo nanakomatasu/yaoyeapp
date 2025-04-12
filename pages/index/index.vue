@@ -497,10 +497,18 @@
 	// }
 
 	.index {
+		min-height: 100vh;
 		background: url('@/static/home/homeBack.png') no-repeat;
-		background-size: cover;
+		background-size: 100% auto;
 		background-attachment: fixed;
-		background-position: center;
+		background-position: top center;
+		-webkit-overflow-scrolling: touch; // 优化 iOS 滚动
+		// iOS specific fix
+		@supports (-webkit-touch-callout: none) {
+			background-attachment: fixed;
+			background-size: 100% auto;
+			background-color: #F8F3E9;
+		}
 
 		.logo-wrap {
 			position: absolute;
