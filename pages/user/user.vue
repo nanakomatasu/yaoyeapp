@@ -58,11 +58,11 @@
 						<view class="xl primary">{{formatNumber(userInfo.subsidy_points)}}</view>
 						<view class="sm">补贴积分</view>
 					</view>
-					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=7')">
+					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=8')">
 						<view class="xl primary">{{formatNumber(userInfo.the_documents)}}</view>
 						<view class="sm">文票</view>
 					</view>
-					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=8')">
+					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=7')">
 						<view class="xl primary">{{formatNumber(userInfo.user_pointsto_be_released)}}</view>
 						<view class="sm">待释放积分</view>
 					</view>

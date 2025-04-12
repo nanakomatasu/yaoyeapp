@@ -49,6 +49,15 @@
 			console.log(options);
 			if (options.type) {
 				this.recordType = options.type
+				if (options.type == 'wp') {
+					uni.setNavigationBarTitle({
+						title: '文票提现记录'
+					})
+				}
+			} else {
+				uni.setNavigationBarTitle({
+					title: '补贴提现记录'
+				})
 			}
 			// Load record data when page loads
 			this.getRecordList()
@@ -83,7 +92,7 @@
 			},
 			getRecordList() {
 				const uid = uni.getStorageSync('userInfo').id
-				if(this.recordType == 'wp') {
+				if (this.recordType == 'wp') {
 					wenpiaoWithdrawRecord({
 						uid: uid
 					}).then(res => {

@@ -425,7 +425,7 @@
 			{
 				"path": "wenpiao/wenpiao_record",
 				"style": {
-					"navigationBarTitleText": "兑换记录",
+					"navigationBarTitleText": "提现记录",
 					"enablePullDownRefresh": true
 				}
 			},

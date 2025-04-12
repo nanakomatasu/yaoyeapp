@@ -204,7 +204,7 @@ export default {
 		},
 		toExchangeRecord() {
 			uni.navigateTo({
-				url: '/pages/bundle/user_bill/user_bill?type=1&score=7'
+				url: '/pages/bundle/user_bill/user_bill?type=1&score=8'
 			})
 		},
 		switchTimeType(type) {
