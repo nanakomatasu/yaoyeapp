@@ -59,14 +59,14 @@
 				<input class="exchange-amount" type="number" placeholder="输入兑换数量" v-model="exchangeAmount" />
 			</view>
 			<view class="hint-section">
-				<text class="hint">当前持有{{formatNumber(wenpiao)}}</text>
+				<text class="hint">当前持有{{formatNumber(wenpiao)}}张</text>
 				<view class="action-buttons">
 					<view class="exchange-record" @click="toExchangeRecord">
 						<text>兑换记录</text>
 						<text class="iconfont icon-right"></text>
 					</view>
 					<view class="withdraw-btn" @click="toWithdraw">
-						<text>去提现</text>
+						<text>去提票</text>
 						<text class="iconfont icon-right"></text>
 					</view>
 				</view>
@@ -121,7 +121,7 @@ export default {
 		this.getZhexian()
 	},
 	methods: {
-		goBack() {
+		goBack() {  
 			uni.navigateBack()
 		},
 		confirmExchange() {
@@ -228,6 +228,10 @@ export default {
 			const max = Math.max(...values);
 			const padding = (max - min) * 0.1; // 上下留10%的空间
 
+			// 如果只有一条数据，调整Y轴的最大值
+			const adjustedMax = data.categories.length <= 3 ? max + 1 : max + padding;
+			const adjustedMin = data.categories.length <= 3 ? Math.max(0, min - 1) : Math.max(0, min - padding);
+
 			const ctx = uni.createCanvasContext(id, this);
 			uChartsInstance[id] = new uCharts({
 				type: "line",
@@ -262,20 +266,20 @@ export default {
 					dashLength: 4,
 					splitNumber: 4,
 					gridColor: "#CCCCCC",
-					format: "val",  // 使用默认格式
+					format: "val",
 					data: [{
-						min: Math.max(0, min - padding),
-						max: max + padding,
+						min: adjustedMin,
+						max: adjustedMax,
 						tofix: 2,
 						unit: '',
-						labelCount: 4,  // 控制标签数量
-						fontSize: 10  // 稍微减小字体
+						labelCount: 4,
+						fontSize: 10
 					}],
 					fontColor: "#999999",
 					axisLine: true,
 					axisLineColor: "#CCCCCC",
-					fontSize: 10,  // 减小字体
-					width: 25  // 控制Y轴宽度
+					fontSize: 10,
+					width: 25
 				},
 				extra: {
 					line: {

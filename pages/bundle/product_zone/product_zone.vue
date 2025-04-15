@@ -59,11 +59,11 @@
 			this.catesType = options.type
 			if (options.type == 1) {
 				uni.setNavigationBarTitle({
-					title: '报单专区'
+					title: '消费专区'
 				})
 			} else {
 				uni.setNavigationBarTitle({
-					title: '兑换专区'
+					title: '兑货专区'
 				})
 			}
 			this.getGoodsListFun(options.type)

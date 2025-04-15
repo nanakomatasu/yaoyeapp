@@ -2,7 +2,7 @@
 	<!--pages/user_bill/user_bill.wxml-->
 	<view class="user-bill">
 		<tabs :active="active" line-width="40" @change="onChange">
-			<tab title="全部">
+			<tab :title="tabs1">
 				<view class="list mt20">
 					<view v-for="(item, index) in lists" :key="index" class="item">
 						<view class="bill-list bg-white">
@@ -24,7 +24,7 @@
 					</view>
 				</loading-footer>
 			</tab>
-			<tab title="支出">
+			<tab :title="tabs2">
 				<view class="list mt20">
 					<view v-for="(item, index) in lists" :key="index" class="item">
 						<view class="bill-list bg-white">
@@ -42,11 +42,12 @@
 				<loading-footer :status="loadingStatus" slotEmpty>
 					<view class="data-null column-center" slot="empty">
 						<image class="img-null" src="/static/images/order_null.png" />
-						<text class="nr muted">暂无支出记录～</text>
+						<text class="nr muted" v-if="score != 5">暂无支出记录～</text>
+						<text class="nr muted" v-if="score == 5">暂无兑换记录～</text>
 					</view>
 				</loading-footer>
 			</tab>
-			<tab title="收入">
+			<tab :title="tabs3">
 				<view class="list mt20">
 					<view v-for="(item, index) in lists" :key="index" class="item">
 						<view class="bill-list bg-white">
@@ -63,7 +64,8 @@
 				<loading-footer :status="loadingStatus" slotEmpty>
 					<view class="data-null column-center" slot="empty">
 						<image class="img-null" src="/static/images/order_null.png"></image>
-						<text class="nr muted">暂无收入记录～</text>
+						<text class="nr muted" v-if="score != 5">暂无收入记录～</text>
+						<text class="nr muted" v-if="score == 5">暂无增加记录～</text>
 					</view>
 				</loading-footer>
 			</tab>
@@ -105,7 +107,10 @@
 				lists: [],
 				page: 1,
 				score: 1,
-				loadingStatus: loadingType.LOADING
+				loadingStatus: loadingType.LOADING,
+				tabs1: '全部',
+				tabs2: '减少',
+				tabs3: '增加'
 			};
 		},
 
@@ -127,6 +132,8 @@
 					});
 					break;
 					case 5:
+					this.tabs2 = '已兑换'
+					this.tabs3 = '增加'
 					uni.setNavigationBarTitle({
 						title:'兑货明细'
 					});
@@ -138,7 +145,7 @@
 					break;
 					case 7:
 					uni.setNavigationBarTitle({
-						title:'待释放明细'
+						title:'锁仓明细'
 					});
 					break;
 					case 8:

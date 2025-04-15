@@ -16,13 +16,13 @@
 						</view>
 						<view class="bg-white withdraw-container mt20">
 							<view class="input row-center">
-								<view style="font-size: 23px;align-self: flex-end;margin-bottom: 5px">¥</view>
-								<input v-model="money" placeholder="0.00"></input>
+								<view style="font-size: 23px;align-self: flex-end;margin-bottom: 5px" v-if="tixianType != 'wp'">¥</view>
+								<input v-model="money" placeholder="0.00" ></input>
 								<view class="column" style="flex: none;">
 									<!-- <view class="xs primary" style="text-align: right;" @tap="allWithdraw">全部提现</view> -->
 									<view class="xs" style="color: #BBBBBB" v-if="tixianType != 'wp'">可提现补贴积分￥{{formatNumber(butieJifen)}}
 									</view>
-									<view class="xs" style="color: #BBBBBB" v-if="tixianType == 'wp'">可提现文票￥{{formatNumber(wenpiao)}}
+									<view class="xs" style="color: #BBBBBB" v-if="tixianType == 'wp'">可提现文票{{formatNumber(wenpiao)}}张
 									</view>
 								</view>
 							</view>

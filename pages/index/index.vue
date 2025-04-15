@@ -193,18 +193,18 @@
 				gundongList: [],
 				featureList: [{
 						icon: '/static/home/baodan.png',
-						name: '报单',
+						name: '消费专区',
 						url: '/pages/bundle/product_zone/product_zone?type=1',
 						type: 'switch'
 					},
 					{
 						icon: '/static/home/wenpiao.png',
-						name: '文票',
+						name: '权益兑换',
 						url: '/pages/bundle/wenpiao/wenpiao'
 					},
 					{
 						icon: '/static/home/duihuo.png',
-						name: '兑换',
+						name: '兑货专区',
 						url: '/pages/bundle/product_zone/product_zone?type=2',
 						type: 'switch'
 					},

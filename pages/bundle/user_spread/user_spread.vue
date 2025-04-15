@@ -103,7 +103,7 @@
             </view>
             <view class="mt20 fans-msg-box row bg-white md">
                 <navigator url="/pages/bundle/myTeam/myTeam" hover-class="none" class="my-fans row-center normal">
-                    我的团队
+                    我的粉丝
                     <u-icon class="ml10" name="arrow-right" size="28rpx" color="#666" />
                 </navigator>
                 <view class="line"></view>

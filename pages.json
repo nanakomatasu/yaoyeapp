@@ -286,7 +286,7 @@
 			{
 				"path": "user_bill/user_bill",
 				"style": {
-					"navigationBarTitleText": "钱包明细"
+					"navigationBarTitleText": "消费卷明细"
 				}
 			},
 			{
@@ -432,7 +432,7 @@
 			{
 				"path": "myTeam/myTeam",
 				"style": {
-					"navigationBarTitleText": "我的团队"
+					"navigationBarTitleText": "粉丝列表"
 				}
 			}
 		]

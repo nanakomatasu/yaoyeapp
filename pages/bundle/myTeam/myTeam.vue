@@ -1,18 +1,18 @@
 <template>
 	<view class="content-main">
 		<view class="team-card center-box">
-			<view class="card-title">我的团队</view>
+			<view class="card-title">粉丝列表</view>
 			<view class="card-total">
 				<view class="card-total-item">
 					<view class="card-total-item-title">团队总人数</view>
 					<view class="card-total-item-data">{{canshuInfo.Total_number_of_team_members}}</view>
 				</view>
 				<view class="card-total-item">
-					<view class="card-total-item-title">小市场总业绩</view>
+					<view class="card-total-item-title">小区总业绩</view>
 					<view class="card-total-item-data">{{canshuInfo.community_performance}}</view>
 				</view>
 				<view class="card-total-item">
-					<view class="card-total-item-title">直推总人数</view>
+					<view class="card-total-item-title">分享总人数</view>
 					<view class="card-total-item-data">{{canshuInfo.Total_number_of_direct_referrals}}</view>
 				</view>
 			</view>
@@ -26,7 +26,7 @@
 					<view class="card-efficient-item-data">{{canshuInfo.team_performance}}</view>
 				</view>
 				<view class="card-efficient-item">
-					<view class="card-efficient-item-title">直推有效人数</view>
+					<view class="card-efficient-item-title">分享有效人数</view>
 					<view class="card-efficient-item-data">{{canshuInfo.Number_of_effective_direct_referrals}}</view>
 				</view>
 			</view>
@@ -103,7 +103,7 @@
 					},
 					{
 						id: 2,
-						title: "直推"
+						title: "粉丝"
 					}
 				],
 				teamList: [],
