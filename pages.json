@@ -232,7 +232,7 @@
 			{
 				"path": "user_spread/user_spread",
 				"style": {
-					"navigationBarTitleText": "分销推广"
+					"navigationBarTitleText": "邀请好友"
 				}
 			},
 			{
@@ -268,7 +268,7 @@
 			{
 				"path": "user_withdraw/user_withdraw",
 				"style": {
-					"navigationBarTitleText": "提现"
+					"navigationBarTitleText": "提数权"
 				}
 			},
 			{
@@ -286,7 +286,7 @@
 			{
 				"path": "user_bill/user_bill",
 				"style": {
-					"navigationBarTitleText": "消费卷明细"
+					"navigationBarTitleText": "消费券明细"
 				}
 			},
 			{

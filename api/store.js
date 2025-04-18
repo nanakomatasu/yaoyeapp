@@ -188,3 +188,8 @@ export function wenpiaoWithdrawRecord(data) {
 export function butieWithdrawRecord(data) {
 	return request.post("jk/ticket_points_list", data);
 }
+
+//补贴积分转兑票积分
+export function butieToduipiao(data) {
+	return request.post("jk/ticket_points_exchange", data);
+}

@@ -46,25 +46,25 @@
 					</view> -->
 					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0')">
 						<view class="xl primary">{{formatNumber(userInfo.user_money)}}</view>
-						<view class="sm">消费卷</view>
+						<view class="sm">消费券</view>
 					</view>
 					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=6')">
 						<view class="xl primary">{{formatNumber(userInfo.subsidy_points)}}</view>
 						<view class="sm">补贴</view>
 					</view>
 					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=8')">
-						<view class="xl primary">{{formatNumber(userInfo.the_documents)}}</view>
-						<view class="sm">我的文票</view>
+						<view class="xl primary">{{formatNumber(Number(userInfo.the_documents) + Number(userInfo.extractable))}}</view>
+						<view class="sm">我的票</view>
 					</view>
 				</view>
 				<view class="nav row">
-					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=4')">
-						<view class="xl primary">{{formatNumber(userInfo.ticket_points)}}</view>
-						<view class="sm">兑票积分</view>
-					</view>
 					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=7')">
 						<view class="xl primary">{{formatNumber(userInfo.user_pointsto_be_released)}}</view>
 						<view class="sm">锁仓积分</view>
+					</view>
+					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=4')">
+						<view class="xl primary">{{formatNumber(userInfo.ticket_points)}}</view>
+						<view class="sm">兑票积分</view>
 					</view>
 					<view class="column-center assets-item" @tap="goPage('/pages/bundle/user_bill/user_bill?type=0&score=5')">
 						<view class="xl primary">{{formatNumber(userInfo.earn_points)}}</view>
@@ -222,7 +222,7 @@
 				if (value === undefined || value === null || value === '') return '0.00';
 				const num = parseFloat(value);
 				if (isNaN(num)) return '0.00';
-				return num.toFixed(2);
+				return num.toFixed(5);
 			},
 			goLogin() {
 				let {

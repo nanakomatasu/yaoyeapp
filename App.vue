@@ -24,21 +24,26 @@
 			navHeight: ""
 		},
 		onLaunch: function(options) {
+			let invite_code = options.query.invite_code || strToParams(decodeURIComponent(options.query.scene))
+				.invite_code
+			uni.setStorageSync('inviteCode', invite_code)
 			uni.hideTabBar({
 				animation: false
 			})
 			// 获取配置
 			this.getConfigFun()
-
-			this.getUser()
 			// 获取分享
 			this.getShareInfo()
 			//获取系统信息
 			this.getSystemInfo()
+			if(invite_code) {
+				return
+			}
+			this.getUser()
 		},
 		onShow: function(options) {
 			//绑定邀请码
-			this.bindCode(options)
+			// this.bindCode(options)
 		},
 		onHide: function() {
 			console.log('App Hide')

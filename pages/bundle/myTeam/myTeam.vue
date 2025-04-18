@@ -66,9 +66,13 @@
 								<view class="second-line-item-data">{{item.my_team_yx}}</view>
 							</view>
 							<view class="second-line-item">
+								<view class="second-line-item-title">个人业绩</view>
+								<view class="second-line-item-data">{{item.individual_performance}}</view>
+							</view>
+							<view class="second-line-item">
 								<view class="second-line-item-title">团队业绩</view>
 								<view class="second-line-item-data">{{item.team_performance}}</view>
-							</view>
+							</view>			
 						</view>
 					</view>
 				</view>

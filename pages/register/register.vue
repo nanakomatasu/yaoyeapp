@@ -163,7 +163,7 @@
 						}
 						// #endif
 						// #ifdef APP
-						//  跳转到登录页
+						 跳转到登录页
 						setTimeout(() => {
 							uni.navigateBack()
 						}, 1000)

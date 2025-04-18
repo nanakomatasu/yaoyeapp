@@ -1,6 +1,16 @@
 <template>
 	<!--pages/user_bill/user_bill.wxml-->
 	<view class="user-bill">
+		<view class="amount-info" v-if="score == 8" @click="navWenPiao">
+			<view class="amount-item">
+				<text class="amount-label">持有总量：</text>
+				<text class="amount-value">{{user.the_documents}}</text>
+			</view>
+			<view class="amount-item">
+				<text class="amount-label">可提数量：</text>
+				<text class="amount-value">{{user.extractable}}</text>
+			</view>
+		</view>
 		<tabs :active="active" line-width="40" @change="onChange">
 			<tab :title="tabs1">
 				<view class="list mt20">
@@ -110,7 +120,8 @@
 				loadingStatus: loadingType.LOADING,
 				tabs1: '全部',
 				tabs2: '减少',
-				tabs3: '增加'
+				tabs3: '增加',
+				user: {}
 			};
 		},
 
@@ -123,6 +134,7 @@
 		onLoad: function(options) {
 			console.log(options, "option.type")
 			this.active = parseInt(options.type);
+			this.user = uni.getStorageSync('userInfo')
 			if (options.score) {
 				this.score = parseInt(options.score)
 				switch(parseInt(options.score)) {
@@ -169,6 +181,12 @@
 				this.cleanStatus();
 				this.getAccountLogFun(e);
 			},
+			
+			navWenPiao() {
+				uni.navigateTo({
+					url:'/pages/bundle/wenpiao/wenpiao'
+				})
+			},
 
 			cleanStatus() {
 				// 清理状态
@@ -204,6 +222,28 @@
 <style lang="scss">
 	/* pages/user_bill/user_bill.wxss */
 	.user-bill {
+		.amount-info {
+			display: flex;
+			justify-content: space-between;
+			padding: 20rpx 30rpx;
+			background-color: #fff;
+			
+			.amount-item {
+				display: flex;
+				align-items: center;
+				
+				.amount-label {
+					font-size: 24rpx;
+					color: #999;
+					margin-right: 10rpx;
+				}
+				
+				.amount-value {
+					font-size: 28rpx;
+					color: #666;
+				}
+			}
+		}
 		.list {
 			.item {
 				.time {

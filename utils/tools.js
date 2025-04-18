@@ -334,7 +334,7 @@ export function copy(str) {
 	// #endif
 }
 
-export function  setTabbar() {
+export function setTabbar() {
 	const config = store.getters.appConfig
 	uni.setTabBarStyle({
 		color: config.navigation_setting.ust_color,
@@ -343,31 +343,31 @@ export function  setTabbar() {
 	// #ifdef APP-PLUS
 	config.navigation_menu.forEach((item, index) => {
 		uni.downloadFile({
-		  url: item.un_selected_icon,
-		  success: res => {
-			uni.setTabBarItem({
-				index,
-				iconPath: res.tempFilePath,
-			})
-		  }
+			url: item.un_selected_icon,
+			success: res => {
+				uni.setTabBarItem({
+					index,
+					iconPath: res.tempFilePath,
+				})
+			}
 		});
 		uni.downloadFile({
-		  url: item.un_selected_icon,
-		  success: res => {
-			uni.setTabBarItem({
-				index,
-				iconPath: res.tempFilePath,
-			})
-		  }
+			url: item.un_selected_icon,
+			success: res => {
+				uni.setTabBarItem({
+					index,
+					iconPath: res.tempFilePath,
+				})
+			}
 		});
 		uni.downloadFile({
-		  url: item.selected_icon,
-		  success: res => {
-			uni.setTabBarItem({
-				index,
-				selectedIconPath: res.tempFilePath,
-			})
-		  }
+			url: item.selected_icon,
+			success: res => {
+				uni.setTabBarItem({
+					index,
+					selectedIconPath: res.tempFilePath,
+				})
+			}
 		});
 	})
 	// #endif
@@ -399,7 +399,7 @@ export const tabbarList = [
 ]
 // 登录注册相关
 export const acountList = [
+	'pages/register/register',
 	'pages/login/login',
 	'pages/forget_pwd/forget_pwd',
-	'pages/register/register'
 ]

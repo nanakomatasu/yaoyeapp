@@ -87,6 +87,7 @@ async function _wxMnpLogin() {
 export const toLogin = trottle(_toLogin, 1000)
 // 去登录
 function _toLogin() {
+	console.log('触发');
 	//#ifdef APP-PLUS || MP-WEIXIN
 	uni.navigateTo({
 		url: '/pages/login/login'
